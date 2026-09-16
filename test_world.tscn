@@ -34,7 +34,7 @@ script/source = "extends CharacterBody3D
 
 
 const SPEED = 1.5
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 1
 
 @onready var sprite: AnimatedSprite3D = $AnimatedSprite3D
 
@@ -132,13 +132,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_kfu6g")
-}, {
-"duration": 1.0,
 "texture": ExtResource("6_f2a6c")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_07e4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kfu6g")
 }],
 "loop": 1,
 "name": &"walking_down",
@@ -146,13 +146,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_07jwy")
-}, {
-"duration": 1.0,
 "texture": ExtResource("8_urhrq")
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_kfu6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_07jwy")
 }],
 "loop": 1,
 "name": &"walking_left",
@@ -160,13 +160,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_blr6d")
-}, {
-"duration": 1.0,
 "texture": ExtResource("10_8wsjh")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_42nsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_blr6d")
 }],
 "loop": 1,
 "name": &"walking_right",
@@ -174,13 +174,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_urhrq")
-}, {
-"duration": 1.0,
 "texture": ExtResource("12_8oxbk")
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_v0shv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_urhrq")
 }],
 "loop": 1,
 "name": &"walking_up",
@@ -225,8 +225,8 @@ script = SubResource("GDScript_07jwy")
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_o28me")
-animation = &"walking_up"
-frame_progress = 0.688649
+animation = &"walking_down"
+frame_progress = 0.122149855
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=693360922]
 shape = SubResource("CapsuleShape3D_pgrle")
