@@ -29,6 +29,11 @@ version_control/autoload_on_startup=true
 
 enabled=PackedStringArray("res://addons/TileMapLayer3D/plugin.cfg")
 
+[global_group]
+
+player="player"
+dialogue_ui=""
+
 [input]
 
 interact={
