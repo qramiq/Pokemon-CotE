@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c3ts47q34esfk"
-path="res://.godot/imported/PokeCote_Pixel.ttf-5e7b9a6ea579f35b658c26671a0fc88e.fontdata"
+uid="uid://dywaf1icup6oj"
+path="res://.godot/imported/PokeCote_Pixel_DE.ttf-a98680a78b0dfc1bc39f860311faadd6.fontdata"
 
 [deps]
 
-source_file="res://Assets/TextBox/PokeCote_Pixel.ttf"
-dest_files=["res://.godot/imported/PokeCote_Pixel.ttf-5e7b9a6ea579f35b658c26671a0fc88e.fontdata"]
+source_file="res://Assets/TextBox/PokeCote_Pixel_DE.ttf"
+dest_files=["res://.godot/imported/PokeCote_Pixel_DE.ttf-a98680a78b0dfc1bc39f860311faadd6.fontdata"]
 
 [params]
 

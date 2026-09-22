@@ -25,11 +25,15 @@ var text_tween: Tween
 func _ready() -> void:
 	add_to_group("dialogue_ui")
 
-	# Wichtig: Die UI muss auch funktionieren,
-	# wenn der restliche Baum pausiert ist.
+	# Die Dialogbox muss auch funktionieren,
+	# wenn der Szenenbaum pausiert ist.
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	visible = false
+
+
+func is_dialogue_open() -> bool:
+	return dialogue_is_open
 
 
 func show_dialogue(
@@ -39,7 +43,8 @@ func show_dialogue(
 	if lines.is_empty():
 		return
 
-	# Vorherigen Dialog beenden, falls einer aktiv ist.
+	# Falls bereits ein alter Schreib-Tween läuft,
+	# wird dieser beendet.
 	if text_tween != null and text_tween.is_valid():
 		text_tween.kill()
 
@@ -57,6 +62,7 @@ func show_dialogue(
 	name_label.text = npc_name
 	current_line_index = 0
 	dialogue_is_open = true
+	is_typing = false
 	visible = true
 
 	get_tree().paused = true
@@ -79,15 +85,15 @@ func _display_current_line() -> void:
 
 	is_typing = true
 
-	# Alte Animation sicher beenden.
 	if text_tween != null and text_tween.is_valid():
 		text_tween.kill()
 
-	# Text Zeichen für Zeichen anzeigen.
 	text_tween = create_tween()
 
+	var safe_speed: float = max(letters_per_second, 1.0)
+
 	var duration: float = max(
-		float(current_text.length()) / letters_per_second,
+		float(current_text.length()) / safe_speed,
 		0.05
 	)
 
@@ -102,8 +108,16 @@ func _display_current_line() -> void:
 
 
 func _set_visible_characters(amount: float) -> void:
-	var current_text: String = dialogue_lines[current_line_index]
+	if not dialogue_is_open:
+		return
 
+	if current_line_index < 0:
+		return
+
+	if current_line_index >= dialogue_lines.size():
+		return
+
+	var current_text: String = dialogue_lines[current_line_index]
 	var character_count: int = int(amount)
 
 	dialogue_label.text = current_text.substr(
@@ -113,6 +127,12 @@ func _set_visible_characters(amount: float) -> void:
 
 
 func _on_text_typing_finished() -> void:
+	if not dialogue_is_open:
+		return
+
+	if current_line_index >= dialogue_lines.size():
+		return
+
 	is_typing = false
 	dialogue_label.text = dialogue_lines[current_line_index]
 	hint_label.text = "E zum Weiterlesen"
@@ -127,13 +147,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		get_viewport().set_input_as_handled()
 
-		# Wenn der Text noch geschrieben wird,
-		# wird er sofort vollständig angezeigt.
+		# Während des Schreibens zeigt ein Tastendruck
+		# sofort die komplette Textzeile.
 		if is_typing:
 			_finish_current_line()
 			return
 
-		# Nächste Textseite anzeigen.
+		# Nächste Dialogseite anzeigen.
 		current_line_index += 1
 
 		if current_line_index >= dialogue_lines.size():
@@ -143,11 +163,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _finish_current_line() -> void:
+	if not dialogue_is_open:
+		return
+
 	if text_tween != null and text_tween.is_valid():
 		text_tween.kill()
 
 	is_typing = false
-	dialogue_label.text = dialogue_lines[current_line_index]
+
+	if current_line_index >= 0 \
+	and current_line_index < dialogue_lines.size():
+		dialogue_label.text = dialogue_lines[current_line_index]
+
 	hint_label.text = "E zum Weiterlesen"
 
 
