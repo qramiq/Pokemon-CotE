@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bs57se7s48pfi"
+path="res://.godot/imported/Ecruteak City ■ HGSS [Remastered].wav-aa2a7bcbabd2986a21c84f2a48c27832.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Ecruteak City ■ HGSS [Remastered].wav"
+dest_files=["res://.godot/imported/Ecruteak City ■ HGSS [Remastered].wav-aa2a7bcbabd2986a21c84f2a48c27832.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -24,20 +24,29 @@
 [ext_resource type="Texture2D" uid="uid://b5knsjkqvekh8" path="res://Assets/TextBox/speech hgss 16.png" id="22_2mofu"]
 [ext_resource type="FontFile" uid="uid://dywaf1icup6oj" path="res://Assets/TextBox/PokeCote_Pixel_DE.ttf" id="22_wx40u"]
 [ext_resource type="Script" uid="uid://en8f4pmk8lgd" path="res://main_menu.gd" id="24_2mofu"]
-[ext_resource type="Script" uid="uid://b3o6fgiam2c0q" path="res://bag_panel.gd" id="25_707i3"]
-[ext_resource type="Script" uid="uid://d2hgdk2brgsfc" path="res://save_game.gd" id="26_p8ise"]
+[ext_resource type="Script" uid="uid://41r8ordstugd" path="res://bag_panel.gd" id="25_707i3"]
+[ext_resource type="Script" uid="uid://cwis0hmho50xe" path="res://save_game.gd" id="26_p8ise"]
 [ext_resource type="Script" uid="uid://cxeyy6mlh05ej" path="res://options.gd" id="27_pbxft"]
 [ext_resource type="ArrayMesh" uid="uid://1df41wp5cpu3" path="res://Assets/World/Pokémon Center/Pokémon Center.obj" id="28_shgv4"]
 [ext_resource type="Texture2D" uid="uid://buetmyxcjk7gj" path="res://Assets/World/Pokémon Center/gs_pc_b.png" id="29_uhw1n"]
+[ext_resource type="Script" uid="uid://6miwpab5fe25" path="res://team_panel.gd" id="31_52gdy"]
 [ext_resource type="Texture2D" uid="uid://d0lktmxumto6i" path="res://Assets/World/Pokémon Center/gs_pc_a_.png" id="31_a8eqr"]
 [ext_resource type="ArrayMesh" uid="uid://bfjln4rm1l6ux" path="res://Assets/World/Poké Mart/Poké Mart.obj" id="31_fklxl"]
 [ext_resource type="Texture2D" uid="uid://ewcst0p2atyx" path="res://Assets/World/Poké Mart/fs_a.png" id="32_ntixn"]
+[ext_resource type="Script" uid="uid://b60k4gogidlg2" path="res://pokedex_panel.gd" id="32_ofph3"]
 [ext_resource type="Texture2D" uid="uid://534kncrwtrcq" path="res://Assets/World/Poké Mart/fs_ax.png" id="33_jylmb"]
 [ext_resource type="Texture2D" uid="uid://dn3lusegctdqj" path="res://Assets/World/Poké Mart/fs_ay.png" id="34_br7xo"]
 [ext_resource type="ArrayMesh" uid="uid://dsguyqjeonsp8" path="res://Assets/World/Player's House/Player's House.obj" id="35_br7xo"]
+[ext_resource type="AudioStream" uid="uid://c3ef3f0luwshi" path="res://Assets/SFX/menu_open.ogg" id="35_l0mfl"]
 [ext_resource type="Texture2D" uid="uid://i8uf6si1w1sb" path="res://Assets/World/Player's House/h_mado.png" id="36_1s2gr"]
 [ext_resource type="Texture2D" uid="uid://bbk4seq7l5py5" path="res://Assets/World/Player's House/wk_hh_b.png" id="37_rlisn"]
 [ext_resource type="Texture2D" uid="uid://dsjfprlg22s2d" path="res://Assets/World/Player's House/wk_hh_a.png" id="38_qxqs1"]
+[ext_resource type="Theme" uid="uid://bbhjso1fc8oey" path="res://menu_theme.tres" id="39_theme"]
+[ext_resource type="Texture2D" uid="uid://ch1p60g275bif" path="res://ui_bag.svg" id="40_bag"]
+[ext_resource type="Texture2D" uid="uid://dg7ynx4qutf1c" path="res://ui_party.svg" id="41_party"]
+[ext_resource type="Texture2D" uid="uid://blecxko8xdvce" path="res://ui_pokedex.svg" id="42_pokedex"]
+[ext_resource type="Texture2D" uid="uid://8twm50ku7xwd" path="res://ui_save.svg" id="43_save"]
+[ext_resource type="AudioStream" uid="uid://bs57se7s48pfi" path="res://Assets/Music/Ecruteak City ■ HGSS [Remastered].wav" id="46_ofph3"]
 
 [sub_resource type="GDScript" id="GDScript_dmux5"]
 script/source = "extends CharacterBody3D
@@ -756,6 +765,7 @@ anchor_right = 0.035
 anchor_bottom = 0.062000003
 offset_right = -0.3199997
 offset_bottom = -0.1760025
+theme = ExtResource("39_theme")
 script = ExtResource("24_2mofu")
 
 [node name="DimBackground" type="ColorRect" parent="MenuLayer/MainMenu" unique_id=724662436]
@@ -764,63 +774,68 @@ offset_left = 977.0
 offset_top = 73.0
 offset_right = 1142.0
 offset_bottom = 286.0
-color = Color(18.892157, 18.892157, 18.892157, 1)
+color = Color(0.008, 0.016, 0.045, 0.82)
 
 [node name="MenuPanel" type="PanelContainer" parent="MenuLayer/MainMenu" unique_id=1865081527]
 texture_filter = 2
 layout_mode = 0
-offset_left = 981.0
-offset_top = 75.0
+offset_left = 820.0
+offset_top = 54.0
 offset_right = 1138.0
-offset_bottom = 283.0
+offset_bottom = 470.0
 
 [node name="MainMenuContent" type="VBoxContainer" parent="MenuLayer/MainMenu/MenuPanel" unique_id=1765648830]
 layout_mode = 2
+theme_override_constants/separation = 7
 
 [node name="TitleLabel" type="Label" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=1479272227]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.86, 0.46, 1)
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Menü"
+text = "POKÉMON-MENÜ"
 
 [node name="BagButton" type="Button" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=7142985]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Beutel"
+text = "▸  BEUTEL"
+icon = ExtResource("40_bag")
 
 [node name="TeamButton" type="Button" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=406977627]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Party"
+text = "▸  PARTY"
+icon = ExtResource("41_party")
 
 [node name="PokedexButton" type="Button" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=848066210]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Pokedex"
+text = "▸  POKÉDEX"
+icon = ExtResource("42_pokedex")
 
 [node name="SaveButton" type="Button" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=194163561]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Speichern"
+text = "▸  SPEICHERN"
+icon = ExtResource("43_save")
 
 [node name="OptionsButton" type="Button" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=92503711]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Optionen"
+text = "▸  OPTIONEN"
 
 [node name="CloseButton" type="Button" parent="MenuLayer/MainMenu/MenuPanel/MainMenuContent" unique_id=1588343559]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Schließen"
+text = "×  SCHLIESSEN"
 
 [node name="BagPanel" type="PanelContainer" parent="MenuLayer/MainMenu" unique_id=983717111]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 2.8500001
-anchor_bottom = 5.3750005
-offset_bottom = -1.5258789e-05
+layout_mode = 0
+offset_left = 390.0
+offset_top = 54.0
+offset_right = 1138.0
+offset_bottom = 470.0
 script = ExtResource("25_707i3")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuLayer/MainMenu/BagPanel" unique_id=1055612695]
@@ -832,43 +847,58 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=1308251376]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Beutel"
+text = "BEUTEL"
 
 [node name="ItemList" type="ItemList" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=1266481552]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-item_count = 1
 max_columns = 0
-item_0/text = "1 Trank"
+
+[node name="DescriptionLabel" type="Label" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=866856236]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_wx40u")
+text = "Wähle ein Item aus."
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=1395927833]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_wx40u")
+autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=912791181]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "Zurück"
 
-[node name="UseButton2" type="Button" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=444091248]
+[node name="UseButton" type="Button" parent="MenuLayer/MainMenu/BagPanel/MarginContainer/VBoxContainer" unique_id=444091248]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "Benutzen"
 
 [node name="TeamPanel" type="PanelContainer" parent="MenuLayer/MainMenu" unique_id=1654797419]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 3.2500002
-anchor_bottom = 4.925
-offset_right = -1.5258789e-05
+layout_mode = 0
+offset_left = 390.0
+offset_top = 54.0
+offset_right = 1138.0
+offset_bottom = 470.0
+script = ExtResource("31_52gdy")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuLayer/MainMenu/TeamPanel" unique_id=603321369]
 layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu/TeamPanel/MarginContainer" unique_id=201747618]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="MenuLayer/MainMenu/TeamPanel/MarginContainer/VBoxContainer" unique_id=686380332]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Team"
+text = "TEAM"
 
 [node name="Slot1Label" type="Label" parent="MenuLayer/MainMenu/TeamPanel/MarginContainer/VBoxContainer" unique_id=492571137]
 layout_mode = 2
@@ -900,7 +930,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "6. Kein Pokémon"
 
-[node name="BackButton2" type="Button" parent="MenuLayer/MainMenu/TeamPanel/MarginContainer/VBoxContainer" unique_id=1271617417]
+[node name="BackButton" type="Button" parent="MenuLayer/MainMenu/TeamPanel/MarginContainer/VBoxContainer" unique_id=1271617417]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "Zurück"
@@ -908,30 +938,38 @@ text = "Zurück"
 [node name="PokedexPanel" type="PanelContainer" parent="MenuLayer/MainMenu" unique_id=438277986]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 390.0
+offset_top = 54.0
+offset_right = 1138.0
+offset_bottom = 470.0
+script = ExtResource("32_ofph3")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuLayer/MainMenu/PokedexPanel" unique_id=1476923447]
 layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer" unique_id=1941964359]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer/VBoxContainer" unique_id=1407546890]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
-text = "Pokedex"
+text = "POKÉDEX"
 
 [node name="PokedexInfoLabel" type="Label" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer/VBoxContainer" unique_id=1649126257]
 layout_mode = 2
 
-[node name="PokedexList2" type="ItemList" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer/VBoxContainer" unique_id=94944997]
+[node name="PokedexList" type="ItemList" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer/VBoxContainer" unique_id=94944997]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 item_count = 1
 item_0/text = "001  ???      Unbekannt"
 
-[node name="BackButton2" type="Button" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer/VBoxContainer" unique_id=2124834788]
+[node name="BackButton" type="Button" parent="MenuLayer/MainMenu/PokedexPanel/MarginContainer/VBoxContainer" unique_id=2124834788]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "Zurück"
@@ -939,15 +977,22 @@ text = "Zurück"
 [node name="SavePanel" type="PanelContainer" parent="MenuLayer/MainMenu" unique_id=1995108935]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 390.0
+offset_top = 54.0
+offset_right = 1138.0
+offset_bottom = 470.0
 script = ExtResource("26_p8ise")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuLayer/MainMenu/SavePanel" unique_id=2048315532]
 layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu/SavePanel/MarginContainer" unique_id=1590541116]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="MenuLayer/MainMenu/SavePanel/MarginContainer/VBoxContainer" unique_id=539120538]
 layout_mode = 2
@@ -964,6 +1009,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "Speichern"
 
+[node name="LoadButton" type="Button" parent="MenuLayer/MainMenu/SavePanel/MarginContainer/VBoxContainer" unique_id=843276317]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("22_wx40u")
+text = "Laden"
+
 [node name="BackButton" type="Button" parent="MenuLayer/MainMenu/SavePanel/MarginContainer/VBoxContainer" unique_id=1041038595]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
@@ -972,15 +1022,22 @@ text = "Zurück"
 [node name="OptionsPanel" type="PanelContainer" parent="MenuLayer/MainMenu" unique_id=1479660600]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 390.0
+offset_top = 54.0
+offset_right = 1138.0
+offset_bottom = 470.0
 script = ExtResource("27_pbxft")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuLayer/MainMenu/OptionsPanel" unique_id=1717282509]
 layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu/OptionsPanel/MarginContainer" unique_id=587133638]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="MenuLayer/MainMenu/OptionsPanel/MarginContainer/VBoxContainer" unique_id=2075488778]
 layout_mode = 2
@@ -999,6 +1056,11 @@ text = "Vollbild"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("22_wx40u")
 text = "Zurück"
+
+[node name="MenuOpenSound" type="AudioStreamPlayer" parent="MenuLayer/MainMenu" unique_id=1102339054]
+process_mode = 3
+stream = ExtResource("35_l0mfl")
+volume_db = 1.275
 
 [node name="PokémonCenter" type="MeshInstance3D" parent="." unique_id=1480511577]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 5.8554306, -0.10559082, -13.200226)
@@ -1043,3 +1105,7 @@ surface_material_override/3 = SubResource("StandardMaterial3D_ofph3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player\'sHouse/StaticBody3D" unique_id=2120675290]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 44.94571, 0)
 shape = SubResource("BoxShape3D_3ik0m")
+
+[node name="EcruteakCity■Hgss[remastered]" type="AudioStreamPlayer" parent="." unique_id=1683664384]
+stream = ExtResource("46_ofph3")
+autoplay = true
